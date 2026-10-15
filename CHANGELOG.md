@@ -2,6 +2,17 @@
 
 All notable changes to the Funnel Architect plugin will be documented in this file.
 
+## [1.2.1] - 2026-10-14
+
+### Fixed
+- Mobile check hook now works on Windows. Rewrote `mobile-check.sh` as `mobile-check.js` (the bash version needed `jq` and silently skipped every file without it).
+- Mobile issues are sent back to Claude so it fixes them, instead of only showing a message.
+- iOS issues in templates: `100svh` added to full-height heroes, form fields set to 16px, labels to 12px minimum, and the evergreen webinar watch page now autoplays muted with a tap-for-sound button.
+
+### Added
+- iPhone Safari checks: form fields under 16px (focus zoom), `100vh` without `svh`/`dvh`, autoplay video without `muted` + `playsinline`, sticky bottom bars without safe-area padding, `background-attachment: fixed`, and wrong input types for email/phone fields.
+- `.claude-plugin/marketplace.json` so the plugin installs with `claude plugin marketplace add`.
+
 ## [1.2.0] - 2026-03-04
 
 ### Added
