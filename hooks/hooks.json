@@ -7,9 +7,9 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/mobile-check.sh\"",
+                        "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/mobile-check.js\"",
                         "timeout": 15,
-                        "statusMessage": "Validating mobile responsiveness..."
+                        "statusMessage": "Checking mobile and iPhone Safari issues..."
                     },
                     {
                         "type": "command",

@@ -132,6 +132,25 @@
             height: 100%;
         }
 
+        /* iPhone only autoplays muted video, so start muted and let the viewer tap for sound */
+        .unmute-btn {
+            position: absolute;
+            left: 50%;
+            bottom: 1rem;
+            transform: translateX(-50%);
+            min-height: 44px;
+            padding: 0.6rem 1.25rem;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 2;
+        }
+
         /* Hide native controls scrub bar — show play/volume only */
         .video-wrap video::-webkit-media-controls-timeline {
             display: none;
@@ -276,10 +295,11 @@
 
         <!-- Video — no scrub bar, plays linearly -->
         <div class="video-wrap">
-            <video id="webinarVideo" poster="{{THUMBNAIL_URL}}" playsinline autoplay>
+            <video id="webinarVideo" poster="{{THUMBNAIL_URL}}" playsinline autoplay muted>
                 <source src="{{VIDEO_URL}}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <button type="button" class="unmute-btn" id="unmuteBtn">🔊 Tap for sound</button>
         </div>
 
         <!-- Offer CTA — revealed after data-reveal-seconds seconds (default: 2400 = 40 min) -->
@@ -309,6 +329,14 @@
         const CTA_REVEAL_SECONDS = parseInt(document.getElementById('offerPanel').dataset.revealSeconds) || 2400;
         const video = document.getElementById('webinarVideo');
         const offerPanel = document.getElementById('offerPanel');
+
+        // ── Tap for Sound (iOS blocks autoplay with sound) ──
+        const unmuteBtn = document.getElementById('unmuteBtn');
+        unmuteBtn.addEventListener('click', () => {
+            video.muted = false;
+            video.play();
+            unmuteBtn.remove();
+        });
 
         video.addEventListener('timeupdate', () => {
             if (video.currentTime >= CTA_REVEAL_SECONDS && !offerPanel.classList.contains('visible')) {

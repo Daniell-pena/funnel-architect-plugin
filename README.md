@@ -101,7 +101,7 @@ funnel-architect-plugin/
 ├── hooks/
 │   └── hooks.json            # Automated checks
 ├── scripts/
-│   ├── mobile-check.sh       # Mobile responsiveness check
+│   ├── mobile-check.js       # Mobile + iPhone Safari check
 │   ├── lighthouse-audit.js   # Performance audit
 │   └── validate-funnel-structure.js
 ├── .mcp.json                 # Pre-configured MCP servers
